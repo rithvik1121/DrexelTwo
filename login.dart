@@ -1,5 +1,5 @@
 import 'dart:html';
-
+import 'package:drexeltwo/home.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -45,6 +45,17 @@ class _LoginPageState extends State<LoginPage> {
                 border: OutlineInputBorder(),
               ),
               obscureText: true,
+            ),
+            const SizedBox(height: 20.0),
+
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HomePage()),
+                );
+              },
+              child: Text("log in"),
             )
           ]),
     ));
