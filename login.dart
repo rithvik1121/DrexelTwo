@@ -48,19 +48,21 @@ class _LoginPageState extends State<LoginPage> {
     //TODO: add button that is disabled until valid credentials have been input into username and password
     //TODO: finalize theme
     return Scaffold(
+        appBar: AppBar(
+          title: const Text("DrexelTwo"),
+          centerTitle: true,
+          backgroundColor: const Color(0xFF002099),
+          foregroundColor: const Color(0xFFFF9030),
+        ),
         body: SafeArea(
-      child: ListView(
-
-          //creates padding from the margins
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          children: <Widget>[
-            const SizedBox(height: 80.0),
-            //allows all components of this page to be in one single column
-            Column(
-              children: <Widget>[
-                const Text('Welcome to DrexelTwo'),
-                const SizedBox(height: 120.0),
-                TextFormField(
+          child: //allows all components of this page to be in one single column
+              Column(
+            children: <Widget>[
+              const SizedBox(height: 120.0),
+              const SizedBox(height: 120.0),
+              Padding(
+                padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                child: TextFormField(
                   controller: username,
                   decoration: const InputDecoration(
                     filled: false,
@@ -68,8 +70,11 @@ class _LoginPageState extends State<LoginPage> {
                     border: OutlineInputBorder(),
                   ),
                 ),
-                const SizedBox(height: 15.0),
-                TextFormField(
+              ),
+              const SizedBox(height: 15.0),
+              Padding(
+                padding: EdgeInsets.fromLTRB(20.0, 0, 20.0, 0.0),
+                child: TextFormField(
                   controller: password,
                   decoration: const InputDecoration(
                     filled: false,
@@ -78,17 +83,22 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   obscureText: true,
                 ),
-                const SizedBox(height: 20.0),
-                ElevatedButton(
-                  onPressed: () => login(build),
-                  child: Text("log in"),
-                ),
-                isValidUser
-                    ? const Text("Welcome!")
-                    : const Text("Invalid username or password")
-              ],
-            ),
-          ]),
-    ));
+              ),
+              const SizedBox(height: 20.0),
+              ElevatedButton(
+                onPressed: () => login(build),
+                child: const Text("log in"),
+                style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all(const Color(0xFF002099)),
+                    foregroundColor:
+                        MaterialStateProperty.all(const Color(0xFFFF9030))),
+              ),
+              isValidUser
+                  ? const Text("Welcome!")
+                  : const Text("Invalid username or password")
+            ],
+          ),
+        ));
   }
 }

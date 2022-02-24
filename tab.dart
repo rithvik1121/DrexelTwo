@@ -1,28 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Tabs extends StatelessWidget {
+class Tabs extends StatefulWidget {
   const Tabs({Key? key}) : super(key: key);
 
-  static const String _title = 'DrexelTwo';
-
   @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: _title,
-      home: MyStatefulWidget(),
-    );
-  }
+  State<Tabs> createState() => _TabsState();
 }
 
-class MyStatefulWidget extends StatefulWidget {
-  const MyStatefulWidget({Key? key}) : super(key: key);
-
-  @override
-  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
-}
-
-class _MyStatefulWidgetState extends State<MyStatefulWidget>
-    with TickerProviderStateMixin {
+class _TabsState extends State<Tabs> with TickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -35,7 +20,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Drexel Two'),
+        title: const Text('DrexelTwo'),
         centerTitle: true,
         backgroundColor: const Color(0xFF002099),
         foregroundColor: const Color(0xFFFF9030),
