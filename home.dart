@@ -1,5 +1,5 @@
 import 'dart:html';
-
+import 'package:drexeltwo/tab.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,11 +18,8 @@ class _HomePageState extends State<HomePage> {
     //TODO: finalize theme
     return Scaffold(
         body: SafeArea(
-      child: ListView(children: <Widget>[
-        Column(
-          children: [const Text("HomePage")],
-        )
-      ]),
-    ));
+            child: Expanded(
+      child: const Tabs(),
+    )));
   }
 }
