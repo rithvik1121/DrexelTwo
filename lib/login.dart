@@ -1,12 +1,9 @@
-import 'dart:convert';
-import 'package:drexeltwo/home.dart';
+//import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/services.dart';
+import 'package:drexeltwo/registerui.dart';
 
 final FirebaseAuth auth = FirebaseAuth.instance;
-final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -21,33 +18,20 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
   //List _users = [];
-  bool isValidUser = false;
 
-  //add user to firebase database
-  void register() async {
+//login using firebase
+  void login() async {
     try {
-      final UserCredential regcred = (await auth.createUserWithEmailAndPassword(
-          email: username.text, password: password.text));
-
-      _firestore.collection('users').doc(regcred.user!.uid).set({
-        'email': username.text,
-        'followers': [],
-        'following': [],
-        'bio': ''
-      });
+      await auth.signInWithEmailAndPassword(
+          email: username.text, password: password.text);
     } catch (e) {
       print(e.toString());
     }
   }
 
-//login using firebase
-  Future<void> login() async {
-    try {
-      await auth.signInWithEmailAndPassword(
-          email: username.text, password: password.text);
-    } catch (e) {
-      print('bruh');
-    }
+  Widget showErr() {
+    return const Scaffold(
+        body: SnackBar(content: Text("Something went wrong, try again")));
   }
 
   //legacy: original login in functionality contained in login() function.
@@ -125,16 +109,22 @@ class _LoginPageState extends State<LoginPage> {
           ),
           const SizedBox(height: 20.0),
           ElevatedButton(
-            onPressed: () => register(),
+            onPressed: () => login(),
             child: const Text("log in"),
             style: ButtonStyle(
                 backgroundColor:
                     MaterialStateProperty.all(const Color(0xFF002099)),
                 foregroundColor: MaterialStateProperty.all(Colors.amber)),
           ),
-          isValidUser
-              ? const Text("Welcome!")
-              : const Text("Invalid username or password")
+          TextButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const RegisterUI()),
+              );
+            },
+            child: const Text("Not a user? Register"),
+          )
         ],
       ),
     ));
