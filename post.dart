@@ -37,7 +37,7 @@ class MyStatelessWidget extends StatelessWidget {
                     MyStatefulWidget;
                   },
                 ),
-                const SizedBox(width: 20),
+                const SizedBox(width: 8),
                 TextButton(
                   child: const Icon(Icons.favorite),
                   onPressed: () {},
@@ -53,7 +53,7 @@ class MyStatelessWidget extends StatelessWidget {
                   child: TextFormField(
                     decoration: const InputDecoration(
                         hintText: 'Enter your comment',
-                        //border: OutlineInputBorder(),
+                        border: OutlineInputBorder(),
                         constraints:
                             BoxConstraints(maxWidth: 1000, minWidth: 100)),
                   ),
