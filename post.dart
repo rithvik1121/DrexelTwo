@@ -1,115 +1,26 @@
-import 'package:flutter/material.dart';
+class Post {
+  final String id;
+  final String title;
+  final String postersName;
+  final String postDatetime;
+  String comment = '';
+  int favoriteCount = 0;
 
-class Post extends StatelessWidget {
-  const Post({Key? key}) : super(key: key);
+  Post(this.id, this.title, this.postersName, this.postDatetime);
 
-  static const String _title = 'DrexelTwo';
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-        title: _title,
-        home: Scaffold(
-          body: MyStatelessWidget(),
-        ));
-  }
+  // factory Post.fromJson(Map<String, dynamic> json) {
+  //   return Post(
+  //       id: json["id"],
+  //       title: json["title"],
+  //       postersName: json["postersName"],
+  //       postDatetime: json["postDatetime"]);
+  // }
 }
 
-class MyStatelessWidget extends StatelessWidget {
-  const MyStatelessWidget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Card(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            const ListTile(
-              title: Text('Club meeting tonight.'),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                TextButton(
-                  child: const Text('comment'),
-                  onPressed: () {
-                    MyStatefulWidget;
-                  },
-                ),
-                const SizedBox(width: 8),
-                TextButton(
-                  child: const Icon(Icons.favorite),
-                  onPressed: () {},
-                ),
-                const SizedBox(width: 8),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                Visibility(
-                  visible: true,
-                  child: TextFormField(
-                    decoration: const InputDecoration(
-                        hintText: 'Enter your comment',
-                        border: OutlineInputBorder(),
-                        constraints:
-                            BoxConstraints(maxWidth: 1000, minWidth: 100)),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class MyStatefulWidget extends StatefulWidget {
-  const MyStatefulWidget({Key? key}) : super(key: key);
-
-  @override
-  _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
-}
-
-class _MyStatefulWidgetState extends State<StatefulWidget> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  @override
-  Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          TextFormField(
-            decoration: const InputDecoration(
-              hintText: 'Enter your comment',
-            ),
-            validator: (String? value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter some text';
-              }
-              return null;
-            },
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: ElevatedButton(
-              onPressed: () {
-                // Validate will return true if the form is valid, or false if
-                // the form is invalid.
-                if (_formKey.currentState!.validate()) {
-                  // Process data.
-                }
-              },
-              child: const Text('comment'),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
+// class PostsList {
+//   final List<Post> items;
+//
+//   final String errorMessage;
+//
+//   PostsList(this.items, this.errorMessage);
+// }
