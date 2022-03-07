@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:drexeltwo/registerui.dart';
-
-final FirebaseAuth auth = FirebaseAuth.instance;
+import 'package:drexeltwo/utlities.dart';
+import 'package:drexeltwo/authentication.dart' as authentication;
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -15,18 +15,15 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final authentication.Authentication auth = authentication.Authentication();
+
   TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
   //List _users = [];
 
-//login using firebase
-  void login() async {
-    try {
-      await auth.signInWithEmailAndPassword(
-          email: username.text, password: password.text);
-    } catch (e) {
-      print(e.toString());
-    }
+  Widget showErr() {
+    return const Scaffold(
+        body: SnackBar(content: Text("Something went wrong, try again")));
   }
 
   Widget showErr() {
@@ -109,7 +106,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
           const SizedBox(height: 20.0),
           ElevatedButton(
-            onPressed: () => login(),
+            onPressed: () => auth.login(username.text, password.text),
             child: const Text("log in"),
             style: ButtonStyle(
                 backgroundColor:

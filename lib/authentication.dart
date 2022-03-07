@@ -1,78 +1,54 @@
-import 'dart:html';
-import 'dart:ui';
-import 'package:drexeltwo/home.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:drexeltwo/login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import "dart:convert";
-import "package:flutter/services.dart";
+import 'package:drexeltwo/utlities.dart' as utilities;
 
-//create a user object, should make it easier to organize each user's page
-class User {
-  final String username;
-  final int password;
+//put all authentication functionality in one place to reduce calls to database
 
-  User(this.username, this.password);
+class Authentication {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  //add user to database
+  void register(String username, String password, BuildContext context) async {
+    try {
+      final UserCredential regcred = (await _auth
+          .createUserWithEmailAndPassword(email: username, password: password));
 
-  User.fromJson(Map<String, dynamic> json)
-      : username = json['username'],
-        password = json['password'];
+      utilities.User user = utilities.User(
+          email: username,
+          uid: regcred.user!.uid,
+          followers: [],
+          following: [],
+          bio: '');
+      await _firestore
+          .collection('users')
+          .doc(regcred.user!.uid)
+          .set(user.toJson());
 
-  Map<String, dynamic> toJson() => {
-        'username': username,
-        'password': password,
-      };
-}
-
-class Authenticate extends StatefulWidget {
-  const Authenticate({Key? key}) : super(key: key);
-
-  @override
-  _AuthenticateState createState() => _AuthenticateState();
-}
-
-//read from the user list in the json file, this will be replaced by the database later
-class _AuthenticateState extends State<Authenticate> {
-  List _users = [];
-  //this should be updated to read from the database in the future. If we use the Firebase that stores data as json trees
-  // we probably won't have to change much of this method
-  Future<void> readJson() async {
-    final String response =
-        await rootBundle.loadString("lib/authentication.json");
-    final data = await json.decode(response);
-    setState(() {
-      _users = data["users"];
-    });
-
-    //returns the total list of the users, decoded from json
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const LoginPage()));
+    } catch (e) {
+      print(e.toString());
+    }
   }
 
-  //check if the user's information is in the authentication.json, if not then add it
-  //User authentify(String usern, int pass) {}
+  //if user is already in database, log them in
+  void login(String username, String password) async {
+    try {
+      await _auth.signInWithEmailAndPassword(
+          email: username, password: password);
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 
-  Widget build(BuildContext context) {
-    return Scaffold(
-        body: Center(
-            child: Column(children: [
-      ElevatedButton(
-        child: const Text("Pretend log in"),
-        onPressed: readJson,
-      ),
-      const Text("Bruh"),
-      //_users.isNotEmpty
-      //    ? Expanded(
-      //        child: ListView.builder(
-      //          itemCount: _users.length,
-      //          itemBuilder: (context, index) {
-      //            return Card(
-      //              margin: const EdgeInsets.all(10),
-      //              child: ListTile(
-      //                leading: Text(_users[index]["username"]),
-      //                subtitle: Text(_users[index]["password"]),
-      //              ),
-      //            );
-      //          },
-      //        ),
-      //      )
-      //    : Container()
-    ])));
+  Future<utilities.User> getUserDetails() async {
+    User currentUser = _auth.currentUser!;
+
+    DocumentSnapshot snap =
+        await _firestore.collection('users').doc(currentUser.uid).get();
+
+    return utilities.User.fromSnapshot(snap);
   }
 }

@@ -2,9 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drexeltwo/login.dart';
-
-final FirebaseAuth auth = FirebaseAuth.instance;
-final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+import 'package:drexeltwo/utlities.dart' as utilities;
+import 'package:drexeltwo/authentication.dart' as authentication;
 
 class RegisterUI extends StatefulWidget {
   const RegisterUI({Key? key}) : super(key: key);
@@ -16,24 +15,7 @@ class RegisterUI extends StatefulWidget {
 }
 
 class _RegisterUIState extends State<RegisterUI> {
-  void register() async {
-    try {
-      final UserCredential regcred = (await auth.createUserWithEmailAndPassword(
-          email: username.text, password: password.text));
-
-      _firestore.collection('users').doc(regcred.user!.uid).set({
-        'email': username.text,
-        'followers': [],
-        'following': [],
-        'bio': ''
-      });
-
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const LoginPage()));
-    } catch (e) {
-      print(e.toString());
-    }
-  }
+  final authentication.Authentication auth = authentication.Authentication();
 
   TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
@@ -90,7 +72,8 @@ class _RegisterUIState extends State<RegisterUI> {
           ),
           const SizedBox(height: 20.0),
           ElevatedButton(
-            onPressed: () => register(),
+            onPressed: () =>
+                auth.register(username.text, password.text, context),
             child: const Text("register"),
             style: ButtonStyle(
                 backgroundColor:
