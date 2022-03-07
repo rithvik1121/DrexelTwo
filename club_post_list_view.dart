@@ -15,7 +15,7 @@ class _ClubPostListViewState extends State<ClubPostListView> {
   // TODO need to see if this can be read from the json file OR from the firebase tables
   // ignore: non_constant_identifier_names
   final _MockClubPosts = [
-    Post('1', 'Drama(isabel) club meeting tonight at 7:00 pm at Urban Theater.',
+    Post('1', 'Mens Hockey plays tonight at 5:00 pm.',
         'Ana 1', 'Mar 01, 2021, 8:15 AM'),
     Post('2', 'Mens basketball tonight at 7:00 pm at DAC.', 'James 2',
         'Mar 01, 2021, 10:08 AM'),
