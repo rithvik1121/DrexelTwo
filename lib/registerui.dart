@@ -1,56 +1,27 @@
-//import 'dart:convert';
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:drexeltwo/registerui.dart';
-import 'package:drexeltwo/utlities.dart';
+import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:drexeltwo/login.dart';
+import 'package:drexeltwo/utlities.dart' as utilities;
 import 'package:drexeltwo/authentication.dart' as authentication;
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class RegisterUI extends StatefulWidget {
+  const RegisterUI({Key? key}) : super(key: key);
 
   @override
-  _LoginPageState createState() {
-    return _LoginPageState();
+  _RegisterUIState createState() {
+    return _RegisterUIState();
   }
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterUIState extends State<RegisterUI> {
   final authentication.Authentication auth = authentication.Authentication();
 
   TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
-  //List _users = [];
-
-  Widget showErr() {
-    return const Scaffold(
-        body: SnackBar(content: Text("Something went wrong, try again")));
-  }
-
-  //legacy: original login in functionality contained in login() function.
-
-  // final String response =
-  // await rootBundle.loadString("lib/authentication.json");
-  // final data = await json.decode(response);
-  // setState(() {
-  // _users = data["users"];
-  // });
-//
-  // if (_users.isNotEmpty) {
-  // for (var i = 0; i < _users.length; i++) {
-  // if (username.text == _users[i]["username"] &&
-  // password.text == _users[i]["password"]) {
-  // isValidUser = true;
-  // Navigator.push(context,
-  // MaterialPageRoute(builder: (context) => const HomePage()));
-  // }
-  // }
-  // }
-  //}
 
   @override
   Widget build(BuildContext build) {
-    //TODO: add button that is disabled until valid credentials have been input into username and password
-    //TODO: finalize theme
     return Scaffold(
         body: Container(
       decoration: const BoxDecoration(
@@ -101,8 +72,9 @@ class _LoginPageState extends State<LoginPage> {
           ),
           const SizedBox(height: 20.0),
           ElevatedButton(
-            onPressed: () => auth.login(username.text, password.text),
-            child: const Text("log in"),
+            onPressed: () =>
+                auth.register(username.text, password.text, context),
+            child: const Text("register"),
             style: ButtonStyle(
                 backgroundColor:
                     MaterialStateProperty.all(const Color(0xFF002099)),
@@ -112,10 +84,10 @@ class _LoginPageState extends State<LoginPage> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const RegisterUI()),
+                MaterialPageRoute(builder: (context) => const LoginPage()),
               );
             },
-            child: const Text("Not a user? Register"),
+            child: const Text("Already a user? Login"),
           )
         ],
       ),
