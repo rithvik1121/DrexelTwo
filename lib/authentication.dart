@@ -14,7 +14,7 @@ class Authentication {
     try {
       final UserCredential regcred =
           (await _auth.createUserWithEmailAndPassword(
-              email: username = "@drexel.edu", password: password));
+              email: username + "@drexel.edu", password: password));
 
       utilities.User user = utilities.User(
           username: username,

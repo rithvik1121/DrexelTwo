@@ -81,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
               controller: username,
               decoration: const InputDecoration(
                 filled: false,
-                labelText: 'drexel id',
+                labelText: 'drexel id(without @drexel.edu)',
                 border: OutlineInputBorder(),
               ),
             ),

@@ -52,7 +52,7 @@ class _RegisterUIState extends State<RegisterUI> {
               controller: username,
               decoration: const InputDecoration(
                 filled: false,
-                labelText: 'drexel email',
+                labelText: 'drexel id(without @drexel.edu)',
                 border: OutlineInputBorder(),
               ),
             ),
