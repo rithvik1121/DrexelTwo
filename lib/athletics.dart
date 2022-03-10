@@ -1,3 +1,4 @@
+import 'package:drexeltwo/club_post_list_view.dart';
 import 'package:flutter/material.dart';
 
 class Athletics extends StatefulWidget {
@@ -13,8 +14,9 @@ class _AthleticsState extends State<Athletics> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:
-          Container(alignment: Alignment.center, child: Text("Athletics page")),
+      body: Container(
+          alignment: Alignment.center,
+          child: ClubPostListView(section: 'athletics')),
     );
   }
 }

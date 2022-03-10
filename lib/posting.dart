@@ -36,11 +36,17 @@ class _PostState extends State<Post> {
   final TextEditingController _postcontentcontroller = TextEditingController();
   String postSection = 'media';
 
-  Future<void> uploadPost(String content, String userId, String section) async {
+  Future<void> uploadPost(
+      String content, String userId, String section, String username) async {
     try {
       String postId = const Uuid().v1();
-      PostData post =
-          PostData(content: content, postId: postId, userID: userId, likes: []);
+      PostData post = PostData(
+          content: content,
+          postId: postId,
+          userID: userId,
+          username: username,
+          likes: [],
+          uploadTime: DateTime.now());
       _firestore.collection(section).doc(postId).set(
             post.toJson(),
           );
@@ -101,8 +107,8 @@ class _PostState extends State<Post> {
                     // the form is invalid.
                     if (_formKey.currentState!.validate()) {
                       // Process data.
-                      uploadPost(
-                          _postcontentcontroller.text, user.uid, postSection);
+                      uploadPost(_postcontentcontroller.text, user.uid,
+                          postSection, user.username);
                     }
                     Navigator.push(
                         context,

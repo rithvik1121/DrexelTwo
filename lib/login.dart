@@ -26,11 +26,6 @@ class _LoginPageState extends State<LoginPage> {
         body: SnackBar(content: Text("Something went wrong, try again")));
   }
 
-  Widget showErr() {
-    return const Scaffold(
-        body: SnackBar(content: Text("Something went wrong, try again")));
-  }
-
   //legacy: original login in functionality contained in login() function.
 
   // final String response =
@@ -86,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
               controller: username,
               decoration: const InputDecoration(
                 filled: false,
-                labelText: 'drexel email',
+                labelText: 'drexel id',
                 border: OutlineInputBorder(),
               ),
             ),

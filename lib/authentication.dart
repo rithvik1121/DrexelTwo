@@ -12,11 +12,12 @@ class Authentication {
   //add user to database
   void register(String username, String password, BuildContext context) async {
     try {
-      final UserCredential regcred = (await _auth
-          .createUserWithEmailAndPassword(email: username, password: password));
+      final UserCredential regcred =
+          (await _auth.createUserWithEmailAndPassword(
+              email: username = "@drexel.edu", password: password));
 
       utilities.User user = utilities.User(
-          email: username,
+          username: username,
           uid: regcred.user!.uid,
           followers: [],
           following: [],
@@ -37,7 +38,7 @@ class Authentication {
   void login(String username, String password) async {
     try {
       await _auth.signInWithEmailAndPassword(
-          email: username, password: password);
+          email: username + '@drexel.edu', password: password);
     } catch (e) {
       print(e.toString());
     }

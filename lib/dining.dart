@@ -1,3 +1,4 @@
+import 'package:drexeltwo/club_post_list_view.dart';
 import 'package:flutter/material.dart';
 
 class Dining extends StatefulWidget {
@@ -13,7 +14,9 @@ class _DiningState extends State<Dining> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(alignment: Alignment.center, child: Text("Dining page")),
+      body: Container(
+          alignment: Alignment.center,
+          child: ClubPostListView(section: 'dining')),
     );
   }
 }

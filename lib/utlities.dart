@@ -6,19 +6,29 @@ class PostData {
   final String content;
   final String postId;
   final String userID;
+  final String username;
   final List likes;
+  final uploadTime;
 
   //constructor
   const PostData({
     required this.content,
     required this.postId,
     required this.userID,
+    required this.username,
     required this.likes,
+    required this.uploadTime,
   });
 
   //to make uploading posts easier
-  Map<String, dynamic> toJson() =>
-      {"content": content, "postID": postId, "userID": userID, "likes": likes};
+  Map<String, dynamic> toJson() => {
+        "content": content,
+        "postID": postId,
+        "userID": userID,
+        "username": username,
+        "likes": likes,
+        "uploadTime": uploadTime
+      };
 
   //returns a post, to read posts from backend
   static PostData fromSnapshot(DocumentSnapshot snap) {
@@ -28,26 +38,28 @@ class PostData {
         content: snapshot['content'],
         postId: snapshot['postID'],
         userID: snapshot['userID'],
-        likes: snapshot['likes']);
+        username: snapshot['username'],
+        likes: snapshot['likes'],
+        uploadTime: snapshot['uploadTime']);
   }
 }
 
 class User {
-  final String email;
+  final String username;
   final String uid;
   final List followers;
   final List following;
   final String bio;
 
   const User(
-      {required this.email,
+      {required this.username,
       required this.uid,
       required this.followers,
       required this.following,
       required this.bio});
 
   Map<String, dynamic> toJson() => {
-        'email': email,
+        'username': username,
         'followers': followers,
         'following': following,
         'bio': bio,
@@ -57,7 +69,7 @@ class User {
   static User fromSnapshot(DocumentSnapshot snapshot) {
     var snap = snapshot.data() as Map<String, dynamic>;
     return User(
-        email: snapshot['email'],
+        username: snapshot['username'],
         followers: snapshot['followers'],
         following: snapshot['following'],
         bio: snapshot['bio'],
