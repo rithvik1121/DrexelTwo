@@ -1,0 +1,136 @@
+body {
+    background-color: #fff;
+    color: #777;
+    font: normal 15px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+p {
+    line-height: 20px;
+    margin-bottom: 20px;
+}
+h1 {
+    font-family: 'Crete Round', serif;
+    font-weight: bold;
+    color: #444;
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+h2 {
+    font-weight: 300;
+    color: #444;
+    font-size: 55px;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 20px;
+}
+h3 {
+    font-size: 30px;
+    color: #444;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 20px;
+}
+h4 {
+    font-size: 24px;
+    color: #444;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+h5 {
+    font-size: 15px;
+    color: #444;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+a {
+    text-decoration: none;
+    color: #444;
+}
+a:hover {
+    color: #FFC600;
+}
+strong {
+    font-weight: bold;
+}
+small {
+    font-size: 13px;
+    color: #777;
+    font-style: italic;
+}
+.clear {
+    clear: both;
+}
+.wrapper {
+    margin: 0 auto;
+    padding: 0 10px;
+    width: 940px;
+}
+header {
+    height: 120px;
+}
+header h1 {
+    float: left;
+    margin-top: 32px;
+}
+header h1 .color {
+    color: #FFC600;
+}
+header nav {
+    float: right;
+}
+header nav ul li {
+    float: left;
+    display: inline-block;
+    margin-top: 50px;
+}
+header nav ul li a {
+    color: #444;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: block;
+    margin-right: 20px;
+}
+#hero-image {
+    height: 580px;
+    padding-top: 1px;
+    background: #e8eced url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fdrexel.edu%2F~%2Fmedia%2FImages%2Fgraduatecollege%2Fpage%2520images%2Fmain-building.ashx%3Fh%3D300%26w%3D570%26hash%3D4AEF8695867CCD097974A7B544B33EB86115B6F5&f=1&nofb=1') no-repeat center;
+}
+#hero-image h2 {
+    margin: 180px 0 40px 0;
+}
+.button-1 {
+    display: block;
+    text-align: center;
+    background: #07294D;
+    border-radius: 3px;
+    color: #FFC600;
+    width: 180px;
+    height: 50px;
+    font-size: 20px;
+    line-height: 50px;
+    margin: 0 auto;
+}
+.button-1:hover {
+    background-color: #FFC600;
+    color: #07294D;
+}
+#features ul {
+    margin: 80px 0;
+}
+#features ul li {
+    width: 300px;
+    padding-top: 140px;
+    float: left;
+    margin-right: 10px;
+    text-align: center;
+}
+#features ul li.feature-1 {
+    background: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fdrexel.edu%2F~%2Fmedia%2FImages%2Fidentity%2FpageLogos%2Fsocialmedia%2FDrexel_social_informal_yellow_twitter.ashx%3Fla%3Den&f=1&nofb=1') no-repeat top center;
+}
+#features ul li.feature-2 {
+    background: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fyt3.ggpht.com%2Fa%2FAGF-l78ohMgnsepyQdCEZ7B0XuQWq9MmiHB5_nY85Q%3Ds900-c-k-c0xffffffff-no-rj-mo&f=1&nofb=1') no-repeat top center;
+}
+#features ul li.feature-3 {
+    background: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.vY6XsnDod8okJRXK9nGlWAHaFw%26pid%3DApi&f=1') no-repeat top center;
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <style> 
+      body {background-color: #07294D;}
+        h1 {
+    border-radius: 25px;
+    background-color: rgb(5,11,29);
+    font: style; AR JULIAN
+    background-size: cover;
+    width: 200px;
+    padding: 20px 40px 120px;    
+    margin: auto;
+  }
+        p {
+          font-style: AR JULIAN;
+          font-size: 15x;
+        }
+      form [type=text]:focus {
+        border: 2px #FFC600;
+        border-bottom: 2px solid yellow;
+      }
+       
+    </style>
+    
+  <title>POST</title>
+    <meta charset ="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <link rel="stylesheet" href="css/bootstrap.css">
+       <link href='https://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
+  
+  </head>
+  
+  <body>
+    <h1>     
+          <center>
+            <p><font color = #FFC600>
+              What would you like to post?</p>
+          <form action="{{ url_for('upload_post')}}" method = "post">
+            <input type="text" id="post" name="post" value="Click to Enter Text">
+            
+            <br>
+            <input type="text" id="section" name="section" value="Category">
+            <input type="submit" value="Post">
+          </form>  
+            <a href = '/home'>Cancel</a>
+          </center>
+      
+    </h1>
+    
+  </body>
+
+
+  
+</html>
+

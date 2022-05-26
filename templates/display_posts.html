@@ -1,0 +1,52 @@
+<html>
+<head>
+
+  <title>{{ section }}</title>
+
+  <a href = "/home"> Go back to home page</a>
+</head>
+  <body>
+    {%for i in range (length)%}
+     <div id="post" class="flex border-b hover:bg-gray-100 duration-200 cursor-pointer pt-2 pl-3">
+          <div class="flex-col my-1 mx-3">
+            <div id="title" class="flex items-center justify-between">
+              <div id="details" class="flex flex-shrink-0 space-x-1">
+                <div class="text-black font-bold hover:underline">
+                {{user[i]}}
+                {{post_ids[i]}}
+                </div>
+                <div class="text-gray-500">
+                  
+                </div>
+                <div class="text-gray-500 hover:underline">
+                  {{uploadTime[i]}}
+                </div>
+              </div>
+            </div>
+            <div id="body" class=" pr-2">
+              <div id="text">
+               {{content[i]}}
+              </div>
+              <div id="text">
+                {{likes_count[i]}}
+              </div>
+        <div id = "like_button">
+      <form method="POST">
+        {% if has_liked[i]==False %}
+          <input type="submit" name = "like" value = "Like">
+        {% else %}
+          <input type="submit" name = "like" value = "Unlike">
+
+        {% endif %}
+
+      </form>          
+
+        </div>
+              </div>
+            </div>
+          </div>
+    {%endfor%}
+    
+    
+  </body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <style> 
+      body {background-color: #07294D;}
+        h1 {
+    background-color: rgb(5,11,29);
+    border-radius: 25px;
+    font: style; AR JULIAN
+    background-size: cover;
+    width: 200px;
+    padding: 20px 40px 120px;    
+    margin: auto;
+  }
+        p {
+          font-style: AR JULIAN;
+          font-size: 100x;
+        }
+      form [type=text]:focus {
+        border: 2px #FFC600;
+        border-bottom: 2px solid yellow;
+      }
+       
+    </style>
+    
+  <title>POST CLUBS</title>
+    <meta charset ="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <link rel="stylesheet" href="css/bootstrap.css">
+       <link href='https://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
+  
+  </head>
+  
+  <body>
+    <h1>     
+          <center>
+            <img 
+            src = "https://drexeldragons.com/images/2017/8/11/dragon_club.jpg?width=1416"
+              srcset ="https://drexeldragons.com/images/2017/8/11/dragon_club.jpg?width=1416 6x" >
+            
+          <form action= "{{ url_for('upload_post')}}" method = "POST">
+            <input type="text" id="post" name="post" value="Make a post!"><br>
+
+            <label for = "Category">Choose a Category</label>
+
+
+        <select name = "Category" id = "cat">
+            <option value = "media">General</option>
+            <option value = "dining">Dining</option>
+            <option value = "clubs">Clubs</option>
+        </select>
+            <input type="submit" value="Post">
+
+            
+          </form> 
+            
+            <a href = '/home'>Cancel</a>
+            
+            
+          </center>
+      
+    </h1>
+    
+  </body>
+
+</html>

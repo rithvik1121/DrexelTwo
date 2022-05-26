@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>  
+    <title> LOGIN </title>
+    <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <link rel="stylesheet" href="css/bootstrap.css">
+       <link href='https://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
+       <style>
+       body{
+          margin:0;
+          padding:0;
+          background:#07294D;
+          background-size: cover;
+          font-family: sans-serif;
+           }
+      .log{  width:1366px;
+          height:696px;
+          
+          }
+      .loginbox{  width: 320px;
+          height: 450px;
+          background: #000;
+          color: ##FFC600;
+          top:20%;
+          left:36%;
+          position:absolute;
+          transform: translate{-50%,-50%}
+          box-sizing: border-box;
+          padding: 70px 30px;
+          opacity:.7;
+               }
+    
+      h1{    margin:0;
+          padding: 0 0 20px;
+          text-align: center;
+          font-size: 30px;
+          font-family:AR JULIAN;
+          color:#FFC600;
+        }    
+      .loginbox p{  margin:0;
+          padding: 0;
+          font-weight:bold;
+                 }
+      .loginbox input{width: 100%;
+          margin-bottom:20px;
+                     }
+      .loginbox input[type="text"], input[type="password"]{
+          border: none;
+          border-bottom: 1px solid #FFC600;
+          background: transparent;
+          outline:none;
+          height:40px;
+          color:#fff;
+          font-size:16px;
+              }
+      .loginbox input[type="submit"]{
+          border: none;
+          outline:none;
+          height:40px;
+          background:#FFC600;
+          color: #fff;
+          font-size:18px;
+          border-radius:20px;
+              }
+      .loginbox input[type="submit"]:hover
+      {    cursor:pointer;
+          background:#ffc107;
+          color:#000;
+      }
+      .loginbox a{   
+          text-decoration:none;
+          font-size:12px;
+          line-height:20px;
+          color: darkgrey;
+      }
+      .loginbox a:hover
+      {  
+        color:#FFC600;
+      }
+
+      .active{
+        color:#fff;
+        background:#07294D;
+        border-radius:4px;
+      }
+       </style>
+  </head>
+  <body>
+    <img class="log">
+    <div class="loginbox">
+    
+    <h1>Login Here</h1>
+    
+    <form method = "post" action = "{{ url_for('login')  }}">
+      <p> Username</p>
+      <input type="text" name="user" placeholder="Enter Drexel ID(without @drexel.edu)">
+      <p> Password</p>
+      <input type="password" name="pass" placeholder="Enter Password"><br>
+      <input type="submit" name="login" value="Login">
+      <a href="#">Lost your password?</a><br>
+      <a href="/register">Don't have an account?</a>
+      <a href="/home">Temporary Login Bypass </a>
+    </form>
+    </div>
+    <script src="js/jquery-2.1.4.min.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+      <script src="js/ajax-utils.js"></script>
+      <script src="js/script.js"></script>
+  </body>
+</html>
